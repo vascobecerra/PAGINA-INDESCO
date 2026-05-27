@@ -10,69 +10,79 @@
 html{scroll-behavior:smooth}
 body{font-family:Georgia,'Times New Roman',serif;color:var(--text);background:var(--white)}
 
-/* HERO */
-#inicio{min-height:100vh;background:var(--navy);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
-#inicio::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,27,42,.86),rgba(13,27,42,.58) 48%,rgba(13,27,42,.82)),linear-gradient(0deg,rgba(13,27,42,.72),rgba(13,27,42,.18) 45%,rgba(13,27,42,.65))}
-#inicio::after{content:'';position:absolute;inset:0;z-index:2;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.035'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
-.hero-bg-carousel{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,var(--navy),var(--mid))}
-.hero-bg-carousel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.2s ease,transform 7s ease;filter:saturate(1.05) contrast(1.05)}
-.hero-bg-carousel img.active{opacity:1;transform:scale(1)}
-.hero-content{position:relative;z-index:3;max-width:760px;padding:2.5rem 2rem}
+/* ── HERO ── */
+#inicio{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+
+/* Carrusel de fondo */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease;will-change:opacity}
+.hero-bg-slide.active{opacity:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,27,42,.82) 0%,rgba(27,58,92,.75) 60%,rgba(37,99,168,.65) 100%);z-index:1}
+
+.hero-content{position:relative;z-index:2;max-width:760px;padding:2.5rem 2rem}
 .hero-badge{display:inline-block;background:rgba(59,130,196,.22);color:var(--accent);border:1px solid var(--accent);border-radius:20px;padding:.38rem 1.1rem;font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.6rem;font-family:'Segoe UI',sans-serif}
-.hero-content h1{color:var(--white);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.2;margin-bottom:1.2rem;font-style:italic}
+.hero-content h1{color:#fff;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.2;margin-bottom:1.2rem;font-style:italic}
 .hero-content h1 span{color:var(--accent);font-style:normal}
-.hero-content p{color:#94a3b8;font-size:1.1rem;line-height:1.8;margin-bottom:2.5rem}
-.btn-wsp-hero{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:white;padding:.9rem 2.2rem;border-radius:6px;font-size:1rem;font-weight:700;text-decoration:none;transition:background .2s,transform .2s;font-family:'Segoe UI',sans-serif}
+.hero-content p{color:#cbd5e1;font-size:1.1rem;line-height:1.8;margin-bottom:2.5rem}
+.btn-wsp-hero{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:#fff;padding:.9rem 2.2rem;border-radius:6px;font-size:1rem;font-weight:700;text-decoration:none;transition:background .2s,transform .2s;font-family:'Segoe UI',sans-serif}
 .btn-wsp-hero:hover{background:#1da851;transform:translateY(-2px)}
 .hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:3.5rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{color:var(--white);font-size:2.2rem;font-weight:700}
+.stat-num{color:#fff;font-size:2.2rem;font-weight:700}
 .stat-lbl{color:#94a3b8;font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem;font-family:'Segoe UI',sans-serif}
 
-/* SECTIONS */
+/* Indicadores carrusel hero */
+.hero-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px}
+.hero-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);border:none;cursor:pointer;transition:background .3s;padding:0}
+.hero-dot.active{background:#fff}
+
+.hero-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:50%;border:none;background:rgba(255,255,255,.22);color:#fff;font-size:2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.hero-nav:hover{background:rgba(255,255,255,.42);transform:translateY(-50%) scale(1.08)}
+.hero-prev{left:28px}
+.hero-next{right:28px}
+@media(max-width:700px){.hero-nav{width:38px;height:38px;font-size:1.5rem}.hero-prev{left:12px}.hero-next{right:12px}}
+
+/* ── SECCIONES ── */
 section{padding:90px 2rem}
 .container{max-width:1100px;margin:0 auto}
 .section-tag{color:var(--accent);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:.7rem;font-family:'Segoe UI',sans-serif}
 .section-title{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--navy);margin-bottom:1rem;font-style:italic}
 .section-sub{color:var(--gray);font-size:1rem;line-height:1.8;max-width:620px;font-family:'Segoe UI',sans-serif}
 
-/* CATALOGO */
+/* ── CATÁLOGO ── */
 #catalogo{background:var(--light)}
 .catalog-header{text-align:center;margin-bottom:3.5rem}
 .catalog-header .section-sub{margin:0 auto}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.8rem}
 
-/* CARD */
 .card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s}
 .card:hover{transform:translateY(-6px);box-shadow:0 14px 32px rgba(0,0,0,.13)}
 
-/* GALLERY */
+/* Galería tarjeta */
 .card-gallery{position:relative;height:230px;overflow:hidden;cursor:pointer;background:var(--navy)}
 .card-gallery .slides{display:flex;height:100%;transition:transform .4s ease}
-.card-gallery .slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.card-gallery .slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease}
-.card:hover .slide img{transform:scale(1.035)}
-.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.22);backdrop-filter:blur(4px);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.card-gallery .slide{min-width:100%;height:100%;flex-shrink:0}
+.card-gallery .slide img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.22);backdrop-filter:blur(4px);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .gallery-btn:hover{background:rgba(255,255,255,.45)}
 .gallery-prev{left:10px}
 .gallery-next{right:10px}
 .gallery-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
 .gallery-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45);border:none;cursor:pointer;transition:background .2s;padding:0}
-.gallery-dot.active{background:white}
-.gallery-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:white;font-size:.7rem;font-weight:700;padding:.28rem .75rem;border-radius:12px;z-index:2;text-transform:uppercase;letter-spacing:.8px;font-family:'Segoe UI',sans-serif}
-.zoom-hint{position:absolute;bottom:10px;right:12px;color:rgba(255,255,255,.7);font-size:.72rem;font-family:'Segoe UI',sans-serif;z-index:2}
+.gallery-dot.active{background:#fff}
+.gallery-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;padding:.28rem .75rem;border-radius:12px;z-index:2;text-transform:uppercase;letter-spacing:.8px;font-family:'Segoe UI',sans-serif}
+.zoom-hint{position:absolute;bottom:10px;right:12px;color:rgba(255,255,255,.75);font-size:.72rem;font-family:'Segoe UI',sans-serif;z-index:2;pointer-events:none}
 
 .card-body{padding:1.5rem}
 .card-body h3{font-size:1.18rem;font-weight:700;color:var(--navy);margin-bottom:.6rem;font-style:italic}
 .card-body p{color:var(--gray);font-size:.9rem;line-height:1.7;margin-bottom:1.1rem;font-family:'Segoe UI',sans-serif}
 .card-specs{display:flex;gap:.7rem;flex-wrap:wrap}
-.spec{display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--mid);font-weight:600;background:var(--light);padding:.28rem .65rem;border-radius:8px;font-family:'Segoe UI',sans-serif}
+.spec{font-size:.8rem;color:var(--mid);font-weight:600;background:var(--light);padding:.28rem .65rem;border-radius:8px;font-family:'Segoe UI',sans-serif}
 .card-footer{padding:1rem 1.5rem;border-top:1px solid var(--light);display:flex;justify-content:flex-end}
-.btn-wsp-card{display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:white;padding:.55rem 1.2rem;border-radius:6px;font-size:.88rem;font-weight:700;text-decoration:none;transition:background .2s;font-family:'Segoe UI',sans-serif}
+.btn-wsp-card{display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;padding:.55rem 1.2rem;border-radius:6px;font-size:.88rem;font-weight:700;text-decoration:none;transition:background .2s;font-family:'Segoe UI',sans-serif}
 .btn-wsp-card:hover{background:#1da851}
-.btn-wsp-card svg,.btn-wsp-hero svg,.btn-wsp-big svg,.wsp-btn svg{fill:white}
+.btn-wsp-card svg,.btn-wsp-hero svg,.btn-wsp-big svg,.wsp-btn svg{fill:#fff}
 
-/* CONTACT */
+/* ── CONTACTO ── */
 #contacto{background:var(--white)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
 @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
@@ -80,59 +90,58 @@ section{padding:90px 2rem}
 .info-icon{width:44px;height:44px;background:var(--light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 .info-item h4{font-size:.82rem;color:var(--gray);margin-bottom:.2rem;font-family:'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.5px}
 .info-item p{color:var(--navy);font-weight:600;font-size:.95rem;font-family:'Segoe UI',sans-serif}
-.btn-wsp-big{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:white;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem;margin-top:1.8rem;transition:background .2s;font-family:'Segoe UI',sans-serif}
+.btn-wsp-big{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:#fff;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem;margin-top:1.8rem;transition:background .2s;font-family:'Segoe UI',sans-serif}
 .btn-wsp-big:hover{background:#1da851}
 
-/* FORM */
 .contact-form{display:flex;flex-direction:column;gap:1.1rem}
 .form-group label{font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.35rem;display:block;font-family:'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.5px}
 .form-group input,.form-group textarea,.form-group select{width:100%;padding:.78rem 1rem;border:1.5px solid #d1d5db;border-radius:6px;font-size:.95rem;font-family:Georgia,serif;color:var(--text);transition:border .2s;outline:none;background:var(--white)}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent)}
 .form-group textarea{resize:vertical;min-height:120px}
-.contact-form button{background:var(--navy);color:var(--white);border:none;padding:.9rem;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;font-family:Georgia,serif;letter-spacing:.5px}
+.contact-form button{background:var(--navy);color:#fff;border:none;padding:.9rem;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;font-family:Georgia,serif;letter-spacing:.5px}
 .contact-form button:hover{background:var(--mid)}
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer{background:var(--navy);color:#94a3b8;text-align:center;padding:2.2rem;font-size:.88rem;font-family:'Segoe UI',sans-serif}
 footer span{color:var(--accent);font-weight:700}
 
-/* WSP FLOAT */
+/* ── WSP FLOTANTE ── */
 .wsp-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.wsp-tooltip{background:var(--navy);color:white;padding:.4rem .9rem;border-radius:20px;font-size:.8rem;font-weight:600;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.25);animation:fadeTooltip 4s ease forwards;animation-delay:1.5s;opacity:0;font-family:'Segoe UI',sans-serif}
-@keyframes fadeTooltip{0%{opacity:0}10%{opacity:1}80%{opacity:1}100%{opacity:0}}
+.wsp-tooltip{background:var(--navy);color:#fff;padding:.4rem .9rem;border-radius:20px;font-size:.8rem;font-weight:600;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.25);animation:fadeT 4s ease forwards;animation-delay:1.5s;opacity:0;font-family:'Segoe UI',sans-serif}
+@keyframes fadeT{0%{opacity:0}10%{opacity:1}80%{opacity:1}100%{opacity:0}}
 .wsp-btn{background:#25D366;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);text-decoration:none;transition:transform .2s;animation:pulse 2.5s infinite}
 .wsp-btn:hover{transform:scale(1.1)}
 .wsp-btn svg{width:34px;height:34px}
 @keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 32px rgba(37,211,102,.8)}}
 
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+/* ── LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:2000;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
 .lightbox.open{display:flex}
-.lightbox-img-wrap{position:relative;max-width:90vw;max-height:80vh}
-.lightbox-img-wrap img{max-width:90vw;max-height:80vh;border-radius:8px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.45)}
-.lbox-close{position:fixed;top:18px;right:26px;color:white;font-size:2.5rem;cursor:pointer;z-index:2001;background:none;border:none;line-height:1}
-.lbox-prev,.lbox-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:white;width:46px;height:46px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.lbox-wrap{position:relative;max-width:90vw;max-height:82vh}
+.lbox-wrap img{max-width:90vw;max-height:82vh;border-radius:8px;display:block;object-fit:contain}
+.lbox-close{position:fixed;top:18px;right:26px;color:#fff;font-size:2.5rem;cursor:pointer;z-index:2001;background:none;border:none;line-height:1}
+.lbox-prev,.lbox-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .lbox-prev:hover,.lbox-next:hover{background:rgba(255,255,255,.4)}
 .lbox-prev{left:-60px}
 .lbox-next{right:-60px}
 .lbox-counter{color:#94a3b8;font-size:.85rem;font-family:'Segoe UI',sans-serif}
 @media(max-width:700px){.lbox-prev{left:4px}.lbox-next{right:4px}}
-
-.image-fallback{background:linear-gradient(135deg,var(--navy),var(--blue));color:#94a3b8;font-family:'Segoe UI',sans-serif;font-size:.85rem;text-align:center;padding:1rem}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ══════════════ HERO ══════════════ -->
 <section id="inicio">
-  <div class="hero-bg-carousel" aria-hidden="true">
-    <img class="active" src="carrusel/1.jpg" alt="">
-    <img src="carrusel/2.jpg" alt="">
-    <img src="carrusel/3.jpg" alt="">
-    <img src="carrusel/4.jpg" alt="">
-    <img src="carrusel/5.jpg" alt="">
-    <img src="carrusel/6.jpg" alt="">
+  <div class="hero-bg" id="heroBg">
+    <!-- Las 6 imágenes del carrusel de fondo -->
+    <div class="hero-bg-slide active" style="background-image:url('foto1.jpg')"></div>
+    <div class="hero-bg-slide" style="background-image:url('foto2.jpg')"></div>
+    <div class="hero-bg-slide" style="background-image:url('foto3.jpg')"></div>
+    <div class="hero-bg-slide" style="background-image:url('foto4.jpg')"></div>
+    <div class="hero-bg-slide" style="background-image:url('foto5.jpg')"></div>
+    <div class="hero-bg-slide" style="background-image:url('foto6.jpg')"></div>
   </div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">Importación de Casas Prefabricadas</div>
     <h1>Su hogar ideal,<br><span>listo para habitar</span></h1>
@@ -147,81 +156,36 @@ footer span{color:var(--accent);font-weight:700}
       <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Garantía estructural</div></div>
     </div>
   </div>
+
+  <button class="hero-nav hero-prev" onclick="prevHero()" aria-label="Imagen anterior">‹</button>
+  <button class="hero-nav hero-next" onclick="nextHero()" aria-label="Imagen siguiente">›</button>
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" onclick="goHero(0)"></button>
+    <button class="hero-dot" onclick="goHero(1)"></button>
+    <button class="hero-dot" onclick="goHero(2)"></button>
+    <button class="hero-dot" onclick="goHero(3)"></button>
+    <button class="hero-dot" onclick="goHero(4)"></button>
+    <button class="hero-dot" onclick="goHero(5)"></button>
+  </div>
 </section>
 
-<!-- CATÁLOGO -->
+<!-- ══════════════ CATÁLOGO ══════════════ -->
 <section id="catalogo">
   <div class="container">
     <div class="catalog-header">
       <div class="section-tag">Nuestros Modelos</div>
       <h2 class="section-title">Catálogo de Casas Contenedor</h2>
-      <p class="section-sub">Navegue entre las vistas de cada modelo haciendo clic en las flechas. Presione la imagen para ampliarla.</p>
+      <p class="section-sub">Navegue entre las vistas de cada modelo con las flechas. Haga clic en la imagen para ampliarla.</p>
     </div>
     <div class="cards">
 
-      <!-- CARD 1 -->
+      <!-- COMPACT 36 -->
       <div class="card">
         <div class="card-gallery" data-card="0">
           <div class="slides">
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#0d1b2a"/>
-                <rect x="30" y="80" width="340" height="110" fill="#1b3a5c" rx="3"/>
-                <rect x="30" y="75" width="340" height="12" fill="#2563a8" rx="2"/>
-                <rect x="60" y="95" width="80" height="60" fill="#0d1b2a" rx="2"/>
-                <rect x="63" y="98" width="74" height="54" fill="#3b82c4" opacity=".3" rx="1"/>
-                <line x1="100" y1="98" x2="100" y2="152" stroke="#3b82c4" stroke-width="1" opacity=".5"/>
-                <line x1="63" y1="125" x2="137" y2="125" stroke="#3b82c4" stroke-width="1" opacity=".5"/>
-                <rect x="170" y="110" width="50" height="80" fill="#0d1b2a" rx="2"/>
-                <rect x="280" y="95" width="60" height="95" fill="#0d1b2a" rx="2"/>
-                <rect x="283" y="98" width="54" height="89" fill="#1b3a5c" rx="1"/>
-                <line x1="310" y1="98" x2="310" y2="187" stroke="#2563a8" stroke-width="1.5"/>
-                <rect x="30" y="185" width="340" height="8" fill="#2563a8" rx="1"/>
-                <rect x="0" y="193" width="400" height="37" fill="#0a1520"/>
-                <rect x="60" y="50" width="280" height="30" fill="#162d4a" rx="2"/>
-                <rect x="80" y="55" width="60" height="20" fill="#1b3a5c" rx="1"/>
-                <rect x="180" y="55" width="60" height="20" fill="#1b3a5c" rx="1"/>
-                <rect x="270" y="55" width="50" height="20" fill="#1b3a5c" rx="1"/>
-                <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Exterior — Casa Compact 36</text>
-              </svg>
-            </div>
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#111827"/>
-                <rect x="0" y="40" width="400" height="155" fill="#1f2937"/>
-                <rect x="0" y="40" width="400" height="8" fill="#374151"/>
-                <rect x="0" y="187" width="400" height="8" fill="#374151"/>
-                <rect x="20" y="55" width="160" height="120" fill="#111827" rx="2"/>
-                <rect x="23" y="58" width="154" height="114" fill="#1e3a5f" opacity=".6" rx="1"/>
-                <rect x="60" y="80" width="70" height="50" fill="#243b55" rx="1"/>
-                <rect x="140" y="70" width="30" height="30" fill="#1b3a5c" rx="1"/>
-                <rect x="210" y="55" width="170" height="120" fill="#111827" rx="2"/>
-                <rect x="215" y="60" width="100" height="70" fill="#1e2a3a" rx="1"/>
-                <rect x="220" y="65" width="90" height="60" fill="#263040" rx="1"/>
-                <rect x="325" y="60" width="50" height="35" fill="#1b3a5c" rx="1"/>
-                <rect x="325" y="100" width="50" height="35" fill="#1b3a5c" rx="1"/>
-                <rect x="215" y="140" width="160" height="30" fill="#1a2535" rx="1"/>
-                <rect x="185" y="55" width="20" height="120" fill="#374151"/>
-                <text x="200" y="215" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Interior — Sala de Estar</text>
-              </svg>
-            </div>
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#0d1b2a"/>
-                <rect x="40" y="50" width="320" height="160" fill="#1b3a5c" rx="3"/>
-                <rect x="40" y="50" width="320" height="10" fill="#2563a8"/>
-                <rect x="60" y="70" width="120" height="90" fill="#0d1b2a" rx="2"/>
-                <rect x="65" y="75" width="50" height="80" fill="#132238" rx="1"/>
-                <rect x="120" y="75" width="55" height="40" fill="#132238" rx="1"/>
-                <rect x="120" y="120" width="55" height="35" fill="#1b3a5c" rx="1"/>
-                <rect x="200" y="70" width="140" height="90" fill="#132238" rx="2"/>
-                <rect x="210" y="80" width="50" height="70" fill="#0d1b2a" rx="1"/>
-                <rect x="270" y="80" width="60" height="30" fill="#1b3a5c" rx="1"/>
-                <rect x="270" y="115" width="60" height="40" fill="#1b3a5c" rx="1"/>
-                <rect x="40" y="205" width="320" height="5" fill="#2563a8"/>
-                <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Interior — Dormitorio Principal</text>
-              </svg>
-            </div>
+            <div class="slide"><img src="foto7.jpg" alt="Compact 36 Vista 1" loading="lazy"></div>
+            <div class="slide"><img src="foto8.jpg" alt="Compact 36 Vista 2" loading="lazy"></div>
+            <div class="slide"><img src="foto9.jpg" alt="Compact 36 Vista 3" loading="lazy"></div>
           </div>
           <span class="gallery-badge">Modelo Básico</span>
           <button class="gallery-btn gallery-prev" onclick="slide(event,0,-1)">‹</button>
@@ -248,68 +212,13 @@ footer span{color:var(--accent);font-weight:700}
         </div>
       </div>
 
-      <!-- CARD 2 -->
+      <!-- FAMILY 55 -->
       <div class="card">
         <div class="card-gallery" data-card="1">
           <div class="slides">
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#0a1520"/>
-                <rect x="10" y="80" width="190" height="110" fill="#1b3a5c" rx="2"/>
-                <rect x="10" y="74" width="190" height="12" fill="#2563a8"/>
-                <rect x="210" y="60" width="180" height="130" fill="#162d4a" rx="2"/>
-                <rect x="210" y="54" width="180" height="12" fill="#1d4ed8"/>
-                <rect x="20" y="92" width="70" height="55" fill="#0d1b2a" rx="1"/>
-                <rect x="23" y="95" width="64" height="49" fill="#3b82c4" opacity=".2" rx="1"/>
-                <line x1="55" y1="95" x2="55" y2="144" stroke="#3b82c4" stroke-width="1" opacity=".4"/>
-                <rect x="110" y="100" width="40" height="90" fill="#0d1b2a" rx="1"/>
-                <rect x="225" y="70" width="80" height="55" fill="#0d1b2a" rx="1"/>
-                <rect x="228" y="73" width="74" height="49" fill="#3b82c4" opacity=".15" rx="1"/>
-                <rect x="320" y="75" width="55" height="50" fill="#0d1b2a" rx="1"/>
-                <rect x="225" y="140" width="150" height="40" fill="#0d1b2a" rx="1"/>
-                <rect x="10" y="185" width="380" height="8" fill="#2563a8" rx="1"/>
-                <rect x="0" y="193" width="400" height="37" fill="#070e17"/>
-                <text x="200" y="218" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Exterior — Casa Family 55 (2 contenedores)</text>
-              </svg>
-            </div>
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#111827"/>
-                <rect x="0" y="30" width="400" height="175" fill="#1a2535"/>
-                <rect x="20" y="45" width="170" height="145" fill="#111827" rx="2"/>
-                <rect x="30" y="55" width="70" height="50" fill="#1e3a5f" rx="1"/>
-                <rect x="110" y="55" width="70" height="20" fill="#243b55" rx="1"/>
-                <rect x="110" y="80" width="70" height="25" fill="#1b3a5c" rx="1"/>
-                <rect x="30" y="115" width="150" height="60" fill="#0f1e2e" rx="1"/>
-                <rect x="35" y="120" width="50" height="50" fill="#1b3a5c" rx="1"/>
-                <rect x="95" y="120" width="80" height="50" fill="#243b55" rx="1"/>
-                <rect x="195" y="45" width="185" height="145" fill="#0f1e2e" rx="2"/>
-                <rect x="205" y="55" width="165" height="80" fill="#1a2535" rx="1"/>
-                <rect x="215" y="65" width="60" height="60" fill="#1b3a5c" rx="1"/>
-                <rect x="285" y="65" width="75" height="60" fill="#243b55" rx="1"/>
-                <rect x="205" y="145" width="165" height="35" fill="#111827" rx="1"/>
-                <text x="200" y="215" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Interior — Cocina y Comedor</text>
-              </svg>
-            </div>
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#0d1b2a"/>
-                <rect x="0" y="170" width="400" height="60" fill="#071018"/>
-                <rect x="20" y="40" width="160" height="135" fill="#1b3a5c" rx="3"/>
-                <rect x="20" y="40" width="160" height="10" fill="#2563a8"/>
-                <rect x="30" y="58" width="65" height="50" fill="#0d1b2a" rx="1"/>
-                <rect x="105" y="58" width="65" height="50" fill="#0d1b2a" rx="1"/>
-                <rect x="30" y="118" width="140" height="45" fill="#132238" rx="1"/>
-                <rect x="220" y="55" width="160" height="120" fill="#162d4a" rx="3"/>
-                <rect x="220" y="55" width="160" height="10" fill="#1d4ed8"/>
-                <rect x="230" y="70" width="130" height="90" fill="#0d1b2a" rx="2"/>
-                <rect x="240" y="80" width="50" height="75" fill="#1b3a5c" rx="1"/>
-                <rect x="300" y="80" width="50" height="35" fill="#243b55" rx="1"/>
-                <rect x="300" y="120" width="50" height="35" fill="#1b3a5c" rx="1"/>
-                <rect x="185" y="40" width="30" height="135" fill="#2563a8" opacity=".3"/>
-                <text x="200" y="215" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Exterior — Terraza y Lateral</text>
-              </svg>
-            </div>
+            <div class="slide"><img src="foto10.jpg" alt="Family 55 Vista 1" loading="lazy"></div>
+            <div class="slide"><img src="foto11.jpg" alt="Family 55 Vista 2" loading="lazy"></div>
+            <div class="slide"><img src="foto12.jpg" alt="Family 55 Vista 3" loading="lazy"></div>
           </div>
           <span class="gallery-badge">⭐ Más Vendido</span>
           <button class="gallery-btn gallery-prev" onclick="slide(event,1,-1)">‹</button>
@@ -336,82 +245,13 @@ footer span{color:var(--accent);font-weight:700}
         </div>
       </div>
 
-      <!-- CARD 3 -->
+      <!-- PREMIUM 80 -->
       <div class="card">
         <div class="card-gallery" data-card="2">
           <div class="slides">
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#071018"/>
-                <rect x="5" y="90" width="390" height="100" fill="#1b3a5c" rx="2"/>
-                <rect x="5" y="83" width="390" height="12" fill="#1d4ed8"/>
-                <rect x="5" y="60" width="390" height="28" fill="#162d4a" rx="2"/>
-                <rect x="5" y="53" width="390" height="12" fill="#2563a8"/>
-                <rect x="20" y="68" width="80" height="18" fill="#1b3a5c" rx="1"/>
-                <rect x="160" y="68" width="80" height="18" fill="#1b3a5c" rx="1"/>
-                <rect x="300" y="68" width="80" height="18" fill="#1b3a5c" rx="1"/>
-                <rect x="20" y="100" width="90" height="65" fill="#0d1b2a" rx="1"/>
-                <rect x="23" y="103" width="84" height="59" fill="#3b82c4" opacity=".15" rx="1"/>
-                <line x1="65" y1="103" x2="65" y2="162" stroke="#3b82c4" stroke-width="1" opacity=".4"/>
-                <line x1="23" y1="133" x2="107" y2="133" stroke="#3b82c4" stroke-width="1" opacity=".4"/>
-                <rect x="130" y="100" width="60" height="90" fill="#0d1b2a" rx="1"/>
-                <rect x="210" y="100" width="90" height="65" fill="#0d1b2a" rx="1"/>
-                <rect x="213" y="103" width="84" height="59" fill="#3b82c4" opacity=".12" rx="1"/>
-                <rect x="315" y="100" width="70" height="90" fill="#0d1b2a" rx="1"/>
-                <rect x="5" y="183" width="390" height="8" fill="#1d4ed8"/>
-                <rect x="0" y="191" width="400" height="39" fill="#040c14"/>
-                <text x="200" y="218" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Exterior — Casa Premium 80 (Planta doble)</text>
-              </svg>
-            </div>
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#0f172a"/>
-                <rect x="0" y="20" width="400" height="190" fill="#1e293b"/>
-                <rect x="0" y="20" width="400" height="8" fill="#334155"/>
-                <rect x="15" y="35" width="180" height="160" fill="#0f172a" rx="2"/>
-                <rect x="25" y="45" width="80" height="65" fill="#1e3a5f" rx="2"/>
-                <rect x="115" y="45" width="70" height="65" fill="#243b55" rx="2"/>
-                <rect x="25" y="120" width="160" height="65" fill="#1a2a3f" rx="2"/>
-                <rect x="35" y="130" width="50" height="45" fill="#1b3a5c" rx="1"/>
-                <rect x="95" y="130" width="80" height="45" fill="#243b55" rx="1"/>
-                <rect x="205" y="35" width="180" height="160" fill="#0a1520" rx="2"/>
-                <rect x="215" y="45" width="160" height="70" fill="#1e3a5f" rx="2"/>
-                <rect x="225" y="55" width="60" height="50" fill="#243b55" rx="1"/>
-                <rect x="295" y="55" width="70" height="50" fill="#1b3a5c" rx="1"/>
-                <rect x="215" y="125" width="160" height="60" fill="#162d4a" rx="2"/>
-                <rect x="225" y="135" width="140" height="40" fill="#0f1e2e" rx="1"/>
-                <text x="200" y="218" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Interior — Living y Área Premium</text>
-              </svg>
-            </div>
-            <div class="slide">
-              <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" width="400" height="230">
-                <rect width="400" height="230" fill="#0d1b2a"/>
-                <rect x="0" y="150" width="400" height="80" fill="#071018"/>
-                <!-- terraza -->
-                <rect x="10" y="80" width="380" height="75" fill="#1b3a5c" rx="2"/>
-                <rect x="10" y="73" width="380" height="12" fill="#2563a8"/>
-                <!-- upper floor -->
-                <rect x="50" y="30" width="300" height="48" fill="#162d4a" rx="2"/>
-                <rect x="50" y="23" width="300" height="12" fill="#1d4ed8"/>
-                <rect x="70" y="35" width="60" height="35" fill="#0d1b2a" rx="1"/>
-                <rect x="73" y="38" width="54" height="29" fill="#3b82c4" opacity=".2" rx="1"/>
-                <rect x="175" y="35" width="60" height="35" fill="#0d1b2a" rx="1"/>
-                <rect x="285" y="35" width="50" height="35" fill="#0d1b2a" rx="1"/>
-                <!-- lower floor details -->
-                <rect x="20" y="88" width="100" height="55" fill="#0d1b2a" rx="1"/>
-                <rect x="23" y="91" width="94" height="49" fill="#3b82c4" opacity=".12" rx="1"/>
-                <rect x="145" y="88" width="60" height="55" fill="#0d1b2a" rx="1"/>
-                <rect x="250" y="88" width="120" height="55" fill="#0d1b2a" rx="1"/>
-                <!-- solar panels hint -->
-                <rect x="90" y="10" width="220" height="15" fill="#1d4ed8" opacity=".4" rx="2"/>
-                <line x1="90" y1="17" x2="310" y2="17" stroke="#3b82c4" stroke-width="1" opacity=".5"/>
-                <line x1="145" y1="10" x2="145" y2="25" stroke="#3b82c4" stroke-width="1" opacity=".5"/>
-                <line x1="200" y1="10" x2="200" y2="25" stroke="#3b82c4" stroke-width="1" opacity=".5"/>
-                <line x1="255" y1="10" x2="255" y2="25" stroke="#3b82c4" stroke-width="1" opacity=".5"/>
-                <text x="200" y="8" text-anchor="middle" fill="#3b82c4" font-size="7" font-family="Georgia">Paneles Solares (opcional)</text>
-                <text x="200" y="220" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Georgia">Vista Frontal — Dos Plantas + Terraza</text>
-              </svg>
-            </div>
+            <div class="slide"><img src="foto13.jpg" alt="Premium 80 Vista 1" loading="lazy"></div>
+            <div class="slide"><img src="foto14.jpg" alt="Premium 80 Vista 2" loading="lazy"></div>
+            <div class="slide"><img src="foto15.jpg" alt="Premium 80 Vista 3" loading="lazy"></div>
           </div>
           <span class="gallery-badge">💎 Premium</span>
           <button class="gallery-btn gallery-prev" onclick="slide(event,2,-1)">‹</button>
@@ -425,7 +265,7 @@ footer span{color:var(--accent);font-weight:700}
         </div>
         <div class="card-body">
           <h3>Casa Premium 80</h3>
-          <p>Máximo confort y distinción. Múltiples contenedores en dos plantas, diseño arquitectónico exclusivo y paneles solares opcionales.</p>
+          <p>Máximo confort y distinción. Múltiples contenedores, diseño arquitectónico exclusivo y paneles solares opcionales.</p>
           <div class="card-specs">
             <span class="spec">📐 80 m²</span><span class="spec">🛏 4 dorm.</span><span class="spec">🚿 2 baños</span>
           </div>
@@ -442,14 +282,14 @@ footer span{color:var(--accent);font-weight:700}
   </div>
 </section>
 
-<!-- CONTACTO -->
+<!-- ══════════════ CONTACTO ══════════════ -->
 <section id="contacto">
   <div class="container">
     <div class="contact-grid">
-      <div class="contact-info">
+      <div>
         <div class="section-tag">Contáctenos</div>
         <h2 class="section-title">Hablemos de su proyecto</h2>
-        <p class="section-sub">Nuestro equipo especializado está disponible para asesorarle y entregarle la mejor solución habitacional para sus necesidades.</p>
+        <p class="section-sub">Nuestro equipo especializado está disponible para asesorarle y entregarle la mejor solución habitacional.</p>
         <div class="info-item" style="margin-top:1.8rem">
           <div class="info-icon">📞</div>
           <div><h4>Teléfono / WhatsApp</h4><p>+56 9 5622 8874</p></div>
@@ -462,25 +302,16 @@ footer span{color:var(--accent);font-weight:700}
           <div class="info-icon">📍</div>
           <div><h4>Cobertura</h4><p>Todo Chile</p></div>
         </div>
-        <a class="btn-wsp-big" href="https://wa.me/56956228874?text=Hola%20INDESCO%2C%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20casas%20contenedor" target="_blank">
+        <a class="btn-wsp-big" href="https://wa.me/56956228874?text=Hola%20INDESCO%2C%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank">
           <svg width="24" height="24" viewBox="0 0 32 32"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.833.738 5.49 2.031 7.796L0 32l8.418-2.01A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm7.27 19.563c-.397-.199-2.349-1.159-2.713-1.29-.364-.133-.629-.199-.894.199-.265.397-1.027 1.29-1.259 1.556-.231.265-.463.298-.86.1-.397-.199-1.677-.618-3.194-1.972-1.18-1.053-1.977-2.352-2.208-2.75-.231-.397-.025-.612.174-.81.178-.177.397-.463.596-.695.199-.232.265-.397.397-.662.133-.265.067-.497-.033-.696-.1-.199-.894-2.155-1.225-2.951-.322-.775-.65-.67-.894-.683l-.762-.013c-.265 0-.695.1-1.059.497-.364.397-1.39 1.358-1.39 3.312 0 1.954 1.423 3.842 1.621 4.107.199.265 2.8 4.277 6.786 5.997.949.41 1.689.654 2.266.837.952.303 1.818.26 2.503.158.763-.114 2.349-.96 2.68-1.887.331-.927.331-1.722.232-1.887-.1-.166-.364-.265-.762-.464z"/></svg>
           Escribir por WhatsApp
         </a>
       </div>
       <div>
         <form action="https://formspree.io/f/xgoqppag" method="POST" class="contact-form">
-          <div class="form-group">
-            <label>Nombre completo</label>
-            <input type="text" name="nombre" placeholder="Su nombre" required>
-          </div>
-          <div class="form-group">
-            <label>Correo electrónico</label>
-            <input type="email" name="email" placeholder="sucorreo@email.com" required>
-          </div>
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="tel" name="telefono" placeholder="+56 9 XXXX XXXX">
-          </div>
+          <div class="form-group"><label>Nombre completo</label><input type="text" name="nombre" placeholder="Su nombre" required></div>
+          <div class="form-group"><label>Correo electrónico</label><input type="email" name="email" placeholder="sucorreo@email.com" required></div>
+          <div class="form-group"><label>Teléfono</label><input type="tel" name="telefono" placeholder="+56 9 XXXX XXXX"></div>
           <div class="form-group">
             <label>Modelo de interés</label>
             <select name="modelo" required>
@@ -491,10 +322,7 @@ footer span{color:var(--accent);font-weight:700}
               <option>Otro / Aún no lo sé</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Mensaje</label>
-            <textarea name="mensaje" rows="5" placeholder="Cuéntenos sobre su proyecto o consulta..."></textarea>
-          </div>
+          <div class="form-group"><label>Mensaje</label><textarea name="mensaje" rows="5" placeholder="Cuéntenos sobre su proyecto o consulta..."></textarea></div>
           <button type="submit">Enviar Consulta →</button>
         </form>
       </div>
@@ -518,7 +346,7 @@ footer span{color:var(--accent);font-weight:700}
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lbox-close" onclick="closeLightbox()">✕</button>
-  <div class="lightbox-img-wrap">
+  <div class="lbox-wrap">
     <button class="lbox-prev" onclick="lboxSlide(-1)">‹</button>
     <img id="lbox-img" src="" alt="">
     <button class="lbox-next" onclick="lboxSlide(1)">›</button>
@@ -527,33 +355,29 @@ footer span{color:var(--accent);font-weight:700}
 </div>
 
 <script>
-const galleries=[
-  {title:'Casa Compact 36',images:['casa compact 36/1.jpg','casa compact 36/2.jpg','casa compact 36/3.jpg']},
-  {title:'Casa Family 55',images:['casa family 55/1.jpg','casa family 55/2.jpg','casa family 55/3.jpg']},
-  {title:'Casa Premium 80',images:['casa premium 80/1.jpg','casa premium 80/2.jpg','casa premium 80/3.jpg']}
-];
-const state=galleries.map(()=>0);
-
-function imageMarkup(src,alt){
-  return `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.closest('.slide').classList.add('image-fallback');this.closest('.slide').textContent='Imagen no encontrada: ${src}'">`;
+// ── CARRUSEL HERO ──
+let hIdx=0;
+let heroTimer;
+const hSlides=document.querySelectorAll('.hero-bg-slide');
+const hDots=document.querySelectorAll('.hero-dot');
+function goHero(i){
+  hSlides[hIdx].classList.remove('active');
+  hDots[hIdx].classList.remove('active');
+  hIdx=(i+hSlides.length)%hSlides.length;
+  hSlides[hIdx].classList.add('active');
+  hDots[hIdx].classList.add('active');
+  restartHeroAuto();
 }
+function nextHero(){goHero(hIdx+1);}
+function prevHero(){goHero(hIdx-1);}
+function restartHeroAuto(){
+  clearInterval(heroTimer);
+  heroTimer=setInterval(()=>nextHero(),5000);
+}
+restartHeroAuto();
 
-document.querySelectorAll('.card-gallery').forEach((g,ci)=>{
-  const data=galleries[ci];
-  if(!data)return;
-  g.querySelector('.slides').innerHTML=data.images.map((src,i)=>`<div class="slide">${imageMarkup(src,`${data.title} - Foto ${i+1}`)}</div>`).join('');
-  g.querySelector('.gallery-dots').innerHTML=data.images.map((_,i)=>`<button class="gallery-dot${i===0?' active':''}" onclick="goSlide(event,${ci},${i})" aria-label="Ver foto ${i+1}"></button>`).join('');
-});
-
-const heroImages=document.querySelectorAll('.hero-bg-carousel img');
-let heroIdx=0;
-setInterval(()=>{
-  if(heroImages.length<2)return;
-  heroImages[heroIdx].classList.remove('active');
-  heroIdx=(heroIdx+1)%heroImages.length;
-  heroImages[heroIdx].classList.add('active');
-},4500);
-
+// ── GALERÍA TARJETAS ──
+const state=[0,0,0];
 function updateCard(c){
   const g=document.querySelectorAll('.card-gallery')[c];
   g.querySelector('.slides').style.transform=`translateX(-${state[c]*100}%)`;
@@ -561,32 +385,30 @@ function updateCard(c){
 }
 function slide(e,c,d){
   e.stopPropagation();
-  const n=galleries[c].images.length;
+  const n=document.querySelectorAll('.card-gallery')[c].querySelectorAll('.slide').length;
   state[c]=(state[c]+d+n)%n;
   updateCard(c);
 }
 function goSlide(e,c,i){e.stopPropagation();state[c]=i;updateCard(c);}
 
-let lboxImages=[],lboxTitle='',lboxIdx=0;
+// ── LIGHTBOX ──
+let lboxImgs=[],lboxIdx=0;
 document.querySelectorAll('.card-gallery').forEach((g,ci)=>{
-  g.addEventListener('click',function(e){
+  g.addEventListener('click',e=>{
     if(e.target.closest('button'))return;
-    lboxImages=galleries[ci].images;
-    lboxTitle=galleries[ci].title;
+    lboxImgs=Array.from(g.querySelectorAll('img')).map(i=>i.src);
     lboxIdx=state[ci];
-    openLightbox();
+    openLbox();
   });
 });
-function openLightbox(){
-  const img=document.getElementById('lbox-img');
-  img.src=lboxImages[lboxIdx];
-  img.alt=`${lboxTitle} - Foto ${lboxIdx+1}`;
-  document.getElementById('lbox-counter').textContent=`${lboxTitle} · ${lboxIdx+1} / ${lboxImages.length}`;
+function openLbox(){
+  document.getElementById('lbox-img').src=lboxImgs[lboxIdx];
+  document.getElementById('lbox-counter').textContent=`${lboxIdx+1} / ${lboxImgs.length}`;
   document.getElementById('lightbox').classList.add('open');
 }
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
-function lboxSlide(d){lboxIdx=(lboxIdx+d+lboxImages.length)%lboxImages.length;openLightbox();}
-document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+function lboxSlide(d){lboxIdx=(lboxIdx+d+lboxImgs.length)%lboxImgs.length;openLbox();}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLightbox();});
 document.addEventListener('keydown',e=>{
   if(!document.getElementById('lightbox').classList.contains('open'))return;
   if(e.key==='ArrowRight')lboxSlide(1);
