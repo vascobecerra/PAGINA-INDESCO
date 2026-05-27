@@ -1,0 +1,24 @@
+ORDEN DE IMÁGENES PARA TU HTML
+
+Carrusel principal:
+foto1.jpg
+foto2.jpg
+foto3.jpg
+foto4.jpg
+foto5.jpg
+foto6.jpg
+
+Casa Compact 36:
+foto7.jpg
+foto8.jpg
+foto9.jpg
+
+Casa Family 55:
+foto10.jpg
+foto11.jpg
+foto12.jpg
+
+Casa Premium 80:
+foto13.jpg
+foto14.jpg
+foto15.jpg
